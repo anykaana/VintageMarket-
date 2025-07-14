@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ category }} - VintageSwap
+{% endblock %}
+
+{% block container %}
+<h2 class="text-center mb-4">{{ category }}</h2>
+
+{% if products %}
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+    {% for product in products %}
+    <div class="col">
+        <div class="card h-100 shadow-sm">
+            {% if product.img %}
+            <img src="{{ url_for('static', filename='images/' + product.img) }}" class="card-img-top" alt="{{ product.name }}">
+            {% else %}
+            <img src="{{ url_for('static', filename='images/default.jpg') }}" class="card-img-top" alt="No Image">
+            {% endif %}
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text"><b>ფასი:</b> {{ product.price }} ₾</p>
+                <p class="card-text"><b>კატეგორია:</b> {{ product.category }}</p>
+                <a href="{{ url_for('product_detail', product_id=product.id) }}" class="btn btn-info mt-auto">დეტალურად</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-warning text-center" role="alert">
+    კატეგორიაში "{{ category }}" არ მოიძებნა განცხადებები.
+</div>
+{% endif %}
+{% endblock %}

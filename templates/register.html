@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}
+Register page
+{% endblock %}
+
+{% block container %}
+<div class="row">
+    <form method="post" enctype="multipart/form-data" class="col p-5">
+        {{ form.hidden_tag() }}
+
+        {% for errors in form.errors.values() %}
+        <div class="alert alert-danger">
+            {% for error in errors %}
+            * {{error}}<br>
+            {% endfor %}
+        </div>
+        {% endfor %}
+
+        <div class="register-box">
+            <div class="row">
+                {{ form.profile_img(class="form-control", accept=".png, .jpeg, .jpg") }}
+            </div>
+            <div class="row mt-2">
+                {{ form.username(class="form-control", placeholder=form.username.label.text) }}
+            </div>
+            <div class="row mt-2">
+                {{ form.password(class="form-control", placeholder=form.password.label.text) }}
+            </div>
+            <div class="row mt-2">
+                {{ form.repeat_password(class="form-control", placeholder=form.repeat_password.label.text) }}
+            </div>
+            <div class="row mt-3" style="color: gray;">
+                {{ form.birthday.label }}
+                {{ form.birthday(class="form-control") }}
+            </div>
+            <div class="row mt-2">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

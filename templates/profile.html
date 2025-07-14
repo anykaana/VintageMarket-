@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}
+Profile page
+{% endblock %}
+
+{% block container %}
+<div class="profile-container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+
+                    {% if current_user.profile_img %}
+                    <img src="{{ url_for('static', filename='images/' + current_user.profile_img) }}"
+                         class="rounded-circle mb-4"
+                         alt="Profile Image"
+                         style="width: 150px; height: 150px; object-fit: cover;">
+                    {% else %}
+                    <div class="mb-4 text-muted">No profile image uploaded.</div>
+                    {% endif %}
+
+                    <h4 class="card-title mb-3">{{ current_user.username }}</h4>
+
+                    <p class="text-secondary mb-4">Password: ******</p> {# never show password #}
+
+                    <a href="{{ url_for('logout') }}" class="btn btn-outline-primary">გასვლა</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

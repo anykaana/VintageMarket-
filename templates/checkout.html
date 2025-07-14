@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}გადასახადი{% endblock %}
+
+{% block container %}
+<div class="container my-5">
+  <h2 class="mb-4">გადასახადი</h2>
+
+  {% if cart_items and cart_items|length > 0 %}
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>პროდუქტის სახელი</th>
+        <th>რაოდენობა</th>
+        <th>ფასი (₾)</th>
+        <th>ჯამი (₾)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% set total = 0 %}
+      {% for item in cart_items %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ (item.price * item.quantity) | round(2) }}</td>
+      </tr>
+      {% set total = total + (item.price * item.quantity) %}
+      {% endfor %}
+    </tbody>
+    <tfoot>
+    </tfoot>
+  </table>
+
+<form action="{{ url_for('checkout') }}" method="post">
+    <button type="submit" class="btn btn-success">გადახდა</button>
+</form>
+
+  {% else %}
+  <p class="text-muted">თქვენი კალათა ცარიელია.</p>
+  {% endif %}
+</div>
+{% endblock %}
