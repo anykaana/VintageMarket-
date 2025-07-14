@@ -59,7 +59,7 @@ torrentool==1.2.0
 typing_extensions==4.13.2
 tzdata==2025.2
 urllib3==2.5.0
-VapourSynth @ file:///C:/Users/admin/AppData/Local/Programs/VapourSynth/python/VapourSynth-71-cp313-cp313-win_amd64.whl#sha256=26997ecc1958646aeada774af55c6e1f57a841f0c13ed610da610326003b8c95
+VapourSynth
 virustotal-api==1.1.11
 vt-py==0.21.0
 Werkzeug==3.1.3
